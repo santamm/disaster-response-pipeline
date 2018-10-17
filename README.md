@@ -36,4 +36,4 @@ The following results are showed in the notebooks:
 - 
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
-
+For licensing see LICENSE file.
