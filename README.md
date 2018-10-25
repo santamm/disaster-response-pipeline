@@ -14,7 +14,7 @@ Disaster Response Pipeline based on Figure8 messages
 The code in this project is written in Python 3.6.6 :: Anaconda custom (64-bit).
 The following additional libraries have been used:
 * sqlalchemy
-* piclke
+* pickle
 * nltk
 * re
 * sklearn
