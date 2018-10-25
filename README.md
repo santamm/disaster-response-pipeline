@@ -26,15 +26,19 @@ The following additional libraries have been used:
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database, from the data directory:
+    
         usage: process_data.py messages_fiepath categories_filepath database_filepath
     - To run ML pipeline that trains classifier and saves the model into a pickle file
+    
         usage: train_classifier.py [-h] [--gridsearch] [--no-gridsearch]
                            [--alternative] [--no-alternative]
                            database_filepath model_filepath
+                           
         where --gridsearch activates a gridsearchCV for optimal hyperparameters
         and --alternative loads an alternative model (LinearSVC) with a custom Transformer
 
 2. Webapplication: Rrun the following command in the app's directory to run your web app.
+
     `python run.py`
     and go to http://0.0.0.0:3001/
     
