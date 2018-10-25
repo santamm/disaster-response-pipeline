@@ -14,11 +14,13 @@ Disaster Response Pipeline based on Figure8 messages
 The code in this project is written in Python 3.6.6 :: Anaconda custom (64-bit).
 The following additional libraries have been used:
 * sqlalchemy
-* picke
+* piclke
 * nltk
 * re
 * sklearn
-
+* Flask (for the webapp only)
+* plotly (for the webapp only)
+* wordcloud (for the webapp only)
 
 ## Usage  <a name="usage"></a>
 1. Run the following commands in the project's root directory to set up your database and model.
@@ -29,7 +31,7 @@ The following additional libraries have been used:
         usage: train_classifier.py [-h] [--gridsearch] [--no-gridsearch]
                            [--alternative] [--no-alternative]
                            database_filepath model_filepath
-        where --gridsearch activates a gridsearchCV for optimal hyoerparameters
+        where --gridsearch activates a gridsearchCV for optimal hyperparameters
         and --alternative loads an alternative model (LinearSVC) with a custom Transformer
 
 2. Webapplication: Rrun the following command in the app's directory to run your web app.
@@ -40,23 +42,34 @@ The following additional libraries have been used:
 ## Project Motivation<a name="motivation"></a>
 In this project we analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
 
-The data set contains real messages that were sent during disaster events. We created machine learning pipeline to categorize these events so that messages can be sent to an appropriate disaster relief agency.
+The data set contains real messages that were sent during disaster events. We created machine learning pipeline to classify these events so that messages can be sent to an appropriate disaster relief agency.
+A basic model has been generated using a RandomForestClassifier that gave us an overall accuracy of 94.19%, however when launching the train_classifier.py you can choose to pass a --gridsearch parameter that will activate a grisearchCV to look for best hyperparameters to train the model on. Please be aware that this can be very slow. As it was running for more tha 12 hours on a dual core CPU, in the Juyter notebook you will can also run a RandomizedSearchCV on a sample dataset (for example 2000 datapoints), that will run in few minutes.
+Also it is possible to pass the -- alternative parameter, that will build an alternative model with a LinearSVC classifier and a custom Tranformer that adds an additional feature. We check if the sentence include verbs asking for supplies like "we need water",
+ or "food required", etc., starting from a list of lemmas and genarating all synonyms. The list of synonyms is passed as an initialization parameter for the class. The new feature is True if any words in the list of forms is part of the text, False otherwise
 
-The project includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app also displays visualizations of the data.
-
-The data has been made available by ...., and the original source can be found [here](...)
+The project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app also displays visualizations of the data and a wordmap generated from the text messages receoved.
 
 ## File Descriptions <a name="files"></a>
 The Jupyter notebooks included in this project are:
+- ETL Pipeline Preparation.ipynb
+- ML Pipeline Preparation.ipynb
 
-- Python Files:
+Python Files:
+- process_data.py:      load, clean, and save data to a sqllite db
+- train_classifier.py:  train and test classifier
+- train_utils.py:       utilities functions for training
+- need_extractor.py:    custom Transformer
+- run.py:               start webapp
 
-- webapp files...
+Data files (under data directory):
+- disaster_categories.csv       categories to classify nessages to
+- message-categories.csv        messages received
 
 
 
 ## Results<a name="results"></a>
-The following results are showed in the notebooks:
+The webapp has been deployed on Heroku and can be accessed at the following url:
+
 - 
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
