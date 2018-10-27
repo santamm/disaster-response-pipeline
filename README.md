@@ -74,7 +74,7 @@ Data files (under data directory):
 
 
 ## Results<a name="results"></a>
-The webapp has been deployed on Heroku and can be accessed at the following url:
+The webapp has been deployed on Heroku and can be accessed here(https://disaster-response-webapp.herokuapp.com/)
 The webapps shows three visualizations of the training dataset:
 - a wordmap of the text messages using a png mask of Haiti
 - a barchart of the counts of the messages by genre
