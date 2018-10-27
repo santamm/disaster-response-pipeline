@@ -37,11 +37,12 @@ The following additional libraries have been used:
         where --gridsearch activates a gridsearchCV for optimal hyperparameters
         and --alternative loads an alternative model (LinearSVC) with a custom Transformer
 
-2. Webapplication: Rrun the following command in the app's directory to run your web app.
+2. Webapplication: run the following command in the app's directory to run your web app.
 
     `python run.py`
     and go to http://0.0.0.0:3001/
-    
+    Otherwise you can access the webapp deployed on heroku at 
+    https://disaster-response-webapp.herokuapp.com/ | https://git.heroku.com/disaster-response-webapp.git
 
 ## Project Motivation<a name="motivation"></a>
 In this project we analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
@@ -74,8 +75,10 @@ Data files (under data directory):
 
 ## Results<a name="results"></a>
 The webapp has been deployed on Heroku and can be accessed at the following url:
-
-- 
+The webapps shows three visualizations of the training dataset:
+- a wordmap of the text messages using a png mask of Haiti
+- a barchart of the counts of the messages by genre
+- a barchart of the counts of the message categories
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 For licensing see LICENSE file.
