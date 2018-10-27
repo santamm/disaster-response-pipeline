@@ -31,6 +31,9 @@ The following additional libraries have been used:
     - To run ETL pipeline that cleans data and stores in database, from the data directory:
     
         usage: process_data.py messages_filepath categories_filepath database_filepath
+        
+        example: python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db
+        
     - To run ML pipeline that trains classifier and saves the model into a pickle file
     
         usage: train_classifier.py [-h] [--gridsearch] [--no-gridsearch]
@@ -39,6 +42,9 @@ The following additional libraries have been used:
                            
         where --gridsearch activates a gridsearchCV for optimal hyperparameters
         and --alternative loads an alternative model (LinearSVC) with a custom Transformer
+        
+        Please use this parameters of you want to test the webapp too:
+        python train_classifier.py ../data/DisasterResponse.db classifier.pkl
 
 2. Webapplication: run the following command in the app's directory to run your web app.
 
