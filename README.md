@@ -30,7 +30,7 @@ The following additional libraries have been used:
 
     - To run ETL pipeline that cleans data and stores in database, from the data directory:
     
-        usage: process_data.py messages_fiepath categories_filepath database_filepath
+        usage: process_data.py messages_filepath categories_filepath database_filepath
     - To run ML pipeline that trains classifier and saves the model into a pickle file
     
         usage: train_classifier.py [-h] [--gridsearch] [--no-gridsearch]
@@ -75,7 +75,7 @@ Python Files:
 Data files (under data directory):
 - disaster_categories.csv       categories to classify nessages to
 - message-categories.csv        messages received
-
+- requirements.txt              list of python libraries to install to run webapp
 
 
 ## Results<a name="results"></a>
