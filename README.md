@@ -44,6 +44,7 @@ The following additional libraries have been used:
         and --alternative loads an alternative model (LinearSVC) with a custom Transformer
         
         Please use this parameters of you want to test the webapp too:
+        
         python train_classifier.py ../data/DisasterResponse.db classifier.pkl
 
 2. Webapplication: run the following command in the app's directory to run your web app.
