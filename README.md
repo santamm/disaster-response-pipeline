@@ -49,7 +49,7 @@ The following additional libraries have been used:
 ## Project Analysis<a name="motivation"></a>
 In this project we analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
 
-The data set contains real messages that were sent during disaster events. We created machine learning pipeline to classify these events so that messages can be sent to an appropriate disaster relief agency. The text messages in the training dataset are classified into 36 categories, as shown [below](labels.png)
+The data set contains real messages that were sent during disaster events. We created machine learning pipeline to classify these events so that messages can be sent to an appropriate disaster relief agency. The text messages in the training dataset are classified into 36 categories, as shown ![below](labels.png)
 
 We can see that the distribution of the categories shows a imbalanced dataset, as some categories like hospitals and even water have very few examples. This can be a problem as standard classifier algorithms like Decision Tree and Logistic Regression have a bias towards classes which have number of instances. They tend to only predict the majority class data. Then  while working in an imbalanced domain accuracy is not an appropriate measure to evaluate model performance, we should probably look more to the weighted average of the F1 score.
 
