@@ -2,15 +2,9 @@ import sys
 import argparse
 import numpy as np
 import pandas as pd
-from sqlalchemy import create_engine
-import pickle
-import nltk
-nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger', 'stopwords'])
-from nltk.tokenize import word_tokenize, sent_tokenize
 
-#from nltk import pos_tag
-from nltk.corpus import stopwords, wordnet
-import re
+import pickle
+
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -21,29 +15,7 @@ from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.metrics import classification_report
 from sklearn.metrics import precision_recall_fscore_support as score
 from need_extractor import NeedExtractor
-from train_utils import tokenize
-
-
-def load_data(database_filepath):
-    """
-    Load data from sqllite database into a pandas dataframe
-    Args:
-        database_filepath (string): filepath of the sqllit database
-    Returns:
-        X: np array of predictors (text sentences)
-        y: np array of labels (, 36)
-        column names of 36 the categories
-    """
-    table = 'Response'
-    database = "sqlite:///" + database_filepath
-    engine = create_engine(database)
-    df = pd.read_sql_table(table, engine)
-    X = df.message.values
-    y = df.iloc[:,4:].values
-    return X, y, df.columns[4:].values
-
-
-
+from shared_utils import tokenize, load_data, generate_forms, save_model
 
 def build_model(gridsearch=False):
     """
@@ -78,23 +50,6 @@ def build_model(gridsearch=False):
     else:
         return pipeline
 
-
-
-def generate_forms(lemmas):
-    """
-    Generates a list of synonyms from a list of words and return all in same list
-    Args:
-        lemmas (list): list of lemmas
-    Returns:
-        list of all synonyms of the given lemmas
-    """
-    forms = []
-    for lemma in lemmas:
-        synonyms = wordnet.synsets(lemma)
-        forms = forms + [word.lemma_names() for word in synonyms]
-        flattened_forms = [item for sublist in forms for item in sublist]
-
-    return list(set(flattened_forms))
 
 
 def build_alt_model():
@@ -172,14 +127,7 @@ def evaluate_model(model, X_test, y_test, category_names):
     print_results(y_test, y_pred)
 
 
-def save_model(model, model_filepath):
-    """
-    Dumps model into pickle file
-    Args:
-        model (model object): model to save
-        model_filepath (string): filepath to save model to
-    """
-    pickle.dump(model, open(model_filepath, 'wb'))
+
 
 
 def main():

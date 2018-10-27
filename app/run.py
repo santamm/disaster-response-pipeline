@@ -15,8 +15,12 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import string
+import sys
+import os
 
 
+#sys.path.append(os.path.dirname(os.path.abspath(__file__))+"../models")
+#from train_utils import load_model
 
 app = Flask(__name__)
 
@@ -43,12 +47,13 @@ def tokenize(text):
 Loads a model named "classifier.pkl" from the "models" directory
 Load a database "DisasterResponse.db" from the "data" directory
 Genetates a wordmap of the text in the training data and saves it
-in a file named "haiti-mask.png" in the "static" directory 
+in a file named "haiti-mask.png" in the "static" directory
 
 """
 
 
 # load data
+
 engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('Response', engine)
 X = df.message.values
@@ -57,9 +62,9 @@ categories = df.columns[4:].values
 
 
 # load model
+#model = joblib.load("../models/classifier.pkl")
+
 model = joblib.load("../models/classifier.pkl")
-
-
 
 def generate_wordcloud(messages, mask_file=False):
     """
